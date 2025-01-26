@@ -18,9 +18,9 @@ on:
       - "flatpak/**"
 
 jobs:
-  build:
-    runs-on: self-hosted
   run-ci:
     uses: ./.github/workflows/flutter-build.yml
     with:
       upload-artifact: true
+  build:
+    runs-on: self-hosted
