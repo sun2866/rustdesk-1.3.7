@@ -18,9 +18,6 @@ on:
       - "flatpak/**"
 
 jobs:
-  build:
-    runs-on: self-hosted
-
   #编译完成后是否上传
   run-ci:
     uses: ./.github/workflows/flutter-build.yml
