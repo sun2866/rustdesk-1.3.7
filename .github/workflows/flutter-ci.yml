@@ -18,18 +18,10 @@ on:
       - "flatpak/**"
 
 jobs:
-  #权限
-  open-issue:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          token: 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
-            # 使用自定义的 token 而不是默认的 GITHUB_TOKEN
+  build:
+    name: ${{ matrix.job.target }} (${{ matrix.job.os }})
+    #   runs-on: ${{ matrix.job.os }}
+    runs-on: self-hosted
 
   #编译完成后是否上传
   run-ci:
