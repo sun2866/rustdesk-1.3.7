@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths-ignore:
-    - "docs/**"
-    - "README.md"
+      - "docs/**"
+      - "README.md"
   push:
     branches:
       - master
@@ -16,12 +16,20 @@ on:
       - "res/**"
       - "appimage/**"
       - "flatpak/**"
-
+#权限
+permissions: write-all
 jobs:
-  build:
-    name: ${{ matrix.job.target }} (${{ matrix.job.os }})
-    #   runs-on: ${{ matrix.job.os }}
-    runs-on: self-hosted
+  open-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - run: |
+          gh issue --repo ${{ github.repository }} \
+            create --title "Issue title" --body "Issue body"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   #编译完成后是否上传
   run-ci:
