@@ -19,8 +19,6 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.job.target }} (${{ matrix.job.os }})
-    #   runs-on: ${{ matrix.job.os }}
     runs-on: self-hosted
 
   #编译完成后是否上传
