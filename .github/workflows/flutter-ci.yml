@@ -25,11 +25,12 @@ jobs:
       contents: write
       issues: write
     steps:
-      - run: |
-          gh issue --repo ${{ github.repository }} \
-            create --title "Issue title" --body "Issue body"
-        env:
-          GH_TOKEN: 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
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: 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
+            # 使用自定义的 token 而不是默认的 GITHUB_TOKEN
+
   #编译完成后是否上传
   run-ci:
     uses: ./.github/workflows/flutter-build.yml
